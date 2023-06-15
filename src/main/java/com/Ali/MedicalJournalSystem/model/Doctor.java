@@ -18,12 +18,14 @@ public class Doctor {
     @Column(name = "id")
     private int id;
     private String name;
- //   private String department;
 
+    @ManyToOne
+    @JoinColumn(name = "department_id", referencedColumnName = "id")
+    private Department department;
 
     //laver et mange til en, hvor man kan have mange læger og en admission
-  //  @ManyToOne(fetch = FetchType.LAZY) //By default, @ManyToOne associations use the FetchType.EAGER strategy, which can lead to N+1 query issues or fetching more data than necessary.
-    //@JoinColumn(name= "admission_id", referencedColumnName = "id") //gemmer id fra admission til en colonne kaldet admission_id
-   // private Admission admission;
+    @ManyToOne(fetch = FetchType.LAZY) //By default, @ManyToOne associations use the FetchType.EAGER strategy, which can lead to N+1 query issues or fetching more data than necessary.
+    @JoinColumn(name= "admission_id", referencedColumnName = "id") //gemmer id fra admission til en colonne kaldet admission_id
+   private Admission admission;
 
 }

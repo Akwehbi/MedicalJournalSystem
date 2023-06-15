@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Transactional
 @Table(name= "admission")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,13 +19,13 @@ public class Admission {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //laver ny nummer hvwer gang i primære kode
     @Column(name = "id")
     private int id;
-   // @ManyToOne
-    //@JoinColumn(name = "department_id")
-   // private Department department;
 
-   //@OneToMany(mappedBy = "admission", cascade = CascadeType.ALL)
-   //@JoinColumn(name= "admission_id", referencedColumnName = "id")
-   //private List<Doctor> doctors;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+   @OneToMany(mappedBy = "admission", cascade = CascadeType.ALL)
+   private List<Doctor> doctors;
 
 
     @OneToOne(cascade = CascadeType.ALL)  //forbinder data fra databasen hvor der er en admission til en medicalJournal ||cascadeTypeis  the persistence will propagate (cascade) all EntityManager operations (PERSIST, REMOVE, REFRESH, MERGE, DETACH) to the relating entities.

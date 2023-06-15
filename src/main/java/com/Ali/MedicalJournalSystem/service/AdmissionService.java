@@ -6,4 +6,5 @@ public interface AdmissionService {
 
     public Admission saveAdmission (Admission admission);
 
+
 }
